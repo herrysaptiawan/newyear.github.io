@@ -1,54 +1,41 @@
+// Countdown script
+const second = 1000;
+const minute = second * 60;
+const hour = minute * 60;
+const day = hour * 24;
+
 const fireworkContainer = document.querySelector('.fireworks-container')
-const daysSpan = document.querySelector('#days')
-const hoursSpan = document.querySelector('#hours')
-const minutesSpan = document.querySelector('#minutes')
-const secondsSpan = document.querySelector('#seconds')
-const newYear = document.querySelector('#new-year')
-const before = document.getElementById('before');
-const after = document.getElementById('after');
-const timer = document.getElementById('timer');
 
-const now = new Date()
+let current = new Date('2023-12-31 23:59:56').getTime();
+let countdown = new Date('2024-01-01 00:00:00').getTime();
 
-newYear.innerHTML = now.getFullYear() + 1;
+let interval = setInterval(function() {
+let distance = countdown - current;
 
-//MANUAL
-//const countToDate = new Date("2023-10-10 00:53:00").getTime()
+  if (distance <= 0) {
+    clearInterval(interval);
+	fireworks.start();
+    playAnimation();	
+  }
 
-//OTOMATIS
-const countToDate = new Date(now.getFullYear() + 1, 0, 1).getTime()
+  document.getElementById('days').getElementsByClassName('number')[0].innerHTML = pad(parseInt(distance / day));
+  document.getElementById('hours').getElementsByClassName('number')[0].innerHTML = pad(parseInt((distance % day)/ hour));
+  document.getElementById('minutes').getElementsByClassName('number')[0].innerHTML = pad(parseInt((distance % hour) / minute));
+  document.getElementById('seconds').getElementsByClassName('number')[0].innerHTML = pad(parseInt((distance % minute) / second));
+  current += second;
+}, second);
 
-
-const countdown = () => {
-    const now = new Date().getTime()
-
-    const distance = countToDate - now
-
-    const days = Math.floor(distance / (1000 * 60 * 60 * 24))
-    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
-    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60))
-    const seconds = Math.floor((distance % (1000 * 60)) / 1000)
-
-    daysSpan.innerHTML = days
-    hoursSpan.innerHTML = hours
-    minutesSpan.innerHTML = minutes
-    secondsSpan.innerHTML = seconds
-
-    if (distance < 0) {
-		clearInterval(countdownInterval);
-		fireworks.start();
-		timer.style.display = 'none';
-		after.style.display = 'initial';
-		before.style.display = 'none';
-    } else {		
-		before.style.display = 'initial';
-		after.style.display = 'none';
-	}
+function pad(n) {
+  return (n < 10 ? '0' : '') + n;
 }
 
-countdown()
+// Animation script
 
-const countdownInterval = setInterval(countdown, 1000)
+function playAnimation() {
+  let tl = gsap.timeline();
+  tl.to('.time-counter', {duration: 2, opacity: 0})
+    .to('#new-year-text path', { duration: 2, css: { fill: 'rgba(255,255,255,1)' }, ease: 'power4.outs', delay: '-2' })
+}
 
 const fireworks = new Fireworks(fireworkContainer, {
     speed: 4,
@@ -58,4 +45,5 @@ const fireworks = new Fireworks(fireworkContainer, {
     particles: 400,
     explosion: 10
 })
+
 
