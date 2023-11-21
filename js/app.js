@@ -6,7 +6,7 @@ const day = hour * 24;
 
 const fireworkContainer = document.querySelector('.fireworks-container')
 
-let current = new Date('2023-12-31 23:59:56').getTime();
+let current = new Date().getTime();
 let countdown = new Date('2024-01-01 00:00:00').getTime();
 
 let interval = setInterval(function() {
