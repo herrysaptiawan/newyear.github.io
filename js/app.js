@@ -5,7 +5,7 @@ const   second = 1000,
         fireworkContainer = document.querySelector('.fireworks-container')
 
 // SET DATE NEW YEAR
-let new_year = "Jan 1, 2024 00:00:00",
+let new_year = "Jan 1, 2025 00:00:00",
 
     countDown = new Date(new_year).getTime(),
     interval = setInterval(function() {    
