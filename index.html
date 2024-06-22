@@ -14,22 +14,28 @@
 </head>
     <body>
         <div class="container">
-            <h1 id="new-year-text" style="display: none;">HAPPY NEW YEAR</h1>
+            <h1 class="newYearText" id="textSpawn" style="display: none;">HAPPY NEW YEAR</h1>
+            <h2 class="capNewYearText" id="capTextSpawn" style="display: block;">Cheer to new beginnings, joyous moments, <br> and unforgettable memories in the coming year! <br></h2>
             <div id="countdown">                
-                <ul id="full">
-                    <li><span id="days" class="sub_timer"></span> days</li>
-                    <li><span id="hours" class="sub_timer"></span> Hours</li>
-                    <li><span id="minutes" class="sub_timer"></span> Minutes</li>
-                    <li><span id="seconds" class="sub_timer"></span> Seconds</li>
-                </ul>
-                    
-                <ul class="new_sub_timer" id="half" style="display: none;">
-                    <li><span id="new_seconds"></span></li>
-                </ul>              
+                <div id="full">
+                    <div class="timerText" id="days"><span id="digitDays" class="timerCount"></span>DAYS</div>
+                    <div class="timerText" id="hours"><span id="digitHours" class="timerCount"></span>HOURS</div>
+                    <div class="timerText" id="minutes"><span id="digitMinutes" class="timerCount"></span>MINUTES</div>
+                    <div class="timerText" id="seconds"><span id="digitSeconds" class="timerCount"></span>SECONDS</div>
+                </div>
+                
+                <div id="half" style="display: none;">
+                    <div class="timerCount_second"><span id="digitSeconds_2"></span></div>
+                </div>                
             </div>
-            <div id="year_text" class="year_text">
-                <span>2024</span>
+            <div id="year_text" class="yearText" style="display: none;">
+                <span>2025</span>
             </div> 
+       
+            <footer class="sticky-footer">
+                <img src="https://cache.marriott.com/marriottassets/marriott/DPSLC/Logo/dpslc_logo_L.png" height="150">
+            </footer>
+            
         </div>   
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.0.4/gsap.min.js"></script>
@@ -37,4 +43,6 @@
         <script src="./js/fireworks.js"></script>
         <script src="./js/app.js"></script>         
     </body>
+
+
 </html>
